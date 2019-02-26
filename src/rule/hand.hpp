@@ -17,7 +17,7 @@ struct Hand {
     static constexpr size_t HAND_SIZE = 14;
     static constexpr size_t MAX_NAKI_GROUPS = 4;
 
-    size_t      tiles[HAND_SIZE];
+    TileId      tiles[HAND_SIZE];
     NakiType    nakis[MAX_NAKI_GROUPS];
 
     Orientation tile_source;

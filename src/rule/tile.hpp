@@ -6,11 +6,12 @@
 
 namespace mahjcalc {
 
+struct Tile { TileType type; size_t id; };
+struct TileId { size_t index; };
+
 constexpr size_t RIICHI_TILE_PER_TYPE = 4;
 constexpr size_t RIICHI_NUM_TILE_TYPE = 34;
 constexpr size_t RIICHI_NUM_TILE = RIICHI_NUM_TILE_TYPE * RIICHI_TILE_PER_TYPE;
-
-struct Tile { TileType type; size_t id; };
 
 constexpr Tile RIICHI_TILES[] {
     {TileType::M1, 0}, {TileType::M1, 1}, {TileType::M1, 2}, {TileType::M1, 3},
@@ -50,7 +51,7 @@ constexpr Tile RIICHI_TILES[] {
 };
 static_assert(sizeof(RIICHI_TILES) / sizeof(Tile) == RIICHI_NUM_TILE);
 
-constexpr Tile riichi_tile(size_t index) { return RIICHI_TILES[index]; }
+constexpr Tile riichi_tile(TileId i) { return RIICHI_TILES[i.index]; }
 
 } // namespace mahjcalc
 
