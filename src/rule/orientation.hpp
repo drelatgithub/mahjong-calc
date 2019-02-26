@@ -1,15 +1,15 @@
 #ifndef MAHJCALC_RULE_ORIENTATION_HPP
 #define MAHJCALC_RULE_ORIENTATION_HPP
 
-#include "rule/piece-type.hpp"
+#include "rule/tile-type.hpp"
 
 namespace mahjcalc {
 
 enum class Kaze { E, S, W, N };
-constexpr PieceType YAKU_KAZE[] {
-    PieceType::E, PieceType::S, PieceType::W, PieceType::N
+constexpr TileType YAKU_KAZE[] {
+    TileType::E, TileType::S, TileType::W, TileType::N
 };
-constexpr PieceType get_yaku_kaze(Kaze k) {
+constexpr TileType get_yaku_kaze(Kaze k) {
     return YAKU_KAZE[static_cast<std::underlying_type_t<Kaze>>(k)];
 }
 

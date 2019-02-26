@@ -5,7 +5,7 @@
 
 #include "common.hpp"
 #include "rule/orientation.hpp"
-#include "rule/piece.hpp"
+#include "rule/tile.hpp"
 
 namespace mahjcalc {
 
@@ -17,7 +17,7 @@ struct Hand {
     static constexpr size_t HAND_SIZE = 14;
     static constexpr size_t MAX_NAKI_GROUPS = 4;
 
-    size_t      pieces[HAND_SIZE];
+    size_t      tiles[HAND_SIZE];
     NakiType    nakis[MAX_NAKI_GROUPS];
 
     Orientation tile_source;
@@ -27,9 +27,9 @@ struct Hand {
     std::optional<Orientation> bakaze;
     std::optional<Orientation> jikaze;
 
-    // The pieces[HAND_SIZE - 1] is always the new draw or discard.
+    // The tiles[HAND_SIZE - 1] is always the new draw or discard.
     // Naki (open calls) should always be arranged to the right,
-    //    but Kans are still stored as 3 pieces.
+    //    but Kans are still stored as 3 tiles.
     // For Kakan, the orientation is the orientation of the previous Pon.
     // Example 1:
     //     ------------------------------------  ----------------  ----------------  ------
