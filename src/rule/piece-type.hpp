@@ -19,7 +19,7 @@ enum class PieceType {
     Haku, Hatsu, Chun,
     Undefined
 };
-using PieceTypeUnderlying = std::underlying_type<PieceType>;
+using PieceTypeUnderlying = std::underlying_type_t<PieceType>;
 constexpr PieceTypeUnderlying underlying(PieceType p) { return static_cast<PieceTypeUnderlying>(p); }
 
 enum class PieceTypeCat {
