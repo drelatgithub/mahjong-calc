@@ -8,7 +8,7 @@
 
 namespace mahjcalc {
 
-constexpr size_t NUM_PIECE_TYPE = 34;
+constexpr size_t NUM_PIECE_TYPE = 35; // Including Undefined
 
 // Red Doras are not considered here
 enum class PieceType {
@@ -16,13 +16,14 @@ enum class PieceType {
     P1, P2, P3, P4, P5, P6, P7, P8, P9,
     S1, S2, S3, S4, S5, S6, S7, S8, S9,
     E, S, W, N,
-    Haku, Hatsu, Chun
+    Haku, Hatsu, Chun,
+    Undefined
 };
 using PieceTypeUnderlying = std::underlying_type<PieceType>;
 constexpr PieceTypeUnderlying underlying(PieceType p) { return static_cast<PieceTypeUnderlying>(p); }
 
 enum class PieceTypeCat {
-    Man, Pin, Sou, Kazehai, Sangenpai
+    Man, Pin, Sou, Kazehai, Sangenpai, Undefined
 };
 constexpr PieceTypeCat CATEGORY_OF_PIECE_TYPE[] {
     // Man
@@ -40,7 +41,9 @@ constexpr PieceTypeCat CATEGORY_OF_PIECE_TYPE[] {
     // Kaze
     PieceTypeCat::Kazehai, PieceTypeCat::Kazehai, PieceTypeCat::Kazehai, PieceTypeCat::Kazehai,
     // Sangen
-    PieceTypeCat::Sangenpai, PieceTypeCat::Sangenpai, PieceTypeCat::Sangenpai
+    PieceTypeCat::Sangenpai, PieceTypeCat::Sangenpai, PieceTypeCat::Sangenpai,
+    // Undefined
+    PieceTypeCat::Undefined
 };
 constexpr PieceTypeCat category(PieceType p) { return CATEGORY_OF_PIECE_TYPE[underlying(p)]; }
 
@@ -50,7 +53,8 @@ constexpr PieceTypeNum NUMBER_OF_PIECE_TYPE[] {
     /* Pin */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
     /* Sou */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
     /* Kaze */ 0, 0, 0, 0,
-    /* Sangen */ 0, 0, 0
+    /* Sangen */ 0, 0, 0,
+    /* Undefined */ 0
 };
 constexpr PieceTypeNum number(PieceType p) { return NUMBER_OF_PIECE_TYPE[underlying(p)]; }
 
@@ -70,7 +74,9 @@ constexpr PieceType DORA_OF_PIECE_TYPE[] {
     // Kaze
     PieceType::S, PieceType::W, PieceType::N, PieceType::E,
     // Sangen
-    PieceType::Hatsu, PieceType::Chun, PieceType::Haku
+    PieceType::Hatsu, PieceType::Chun, PieceType::Haku,
+    // Undefined
+    PieceType::Undefined
 };
 constexpr PieceType get_dora_from_indicator(PieceType p) { return DORA_OF_PIECE_TYPE[underlying(p)]; }
 
