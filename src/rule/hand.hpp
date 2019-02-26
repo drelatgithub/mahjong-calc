@@ -17,11 +17,16 @@ struct Hand {
     static constexpr size_t HAND_SIZE = 14;
     static constexpr size_t MAX_NAKI_GROUPS = 4;
 
-    Piece       pieces[HAND_SIZE];
+    size_t      pieces[HAND_SIZE];
     NakiType    nakis[MAX_NAKI_GROUPS];
 
+    Orientation tile_source;
+
+    // Meta data
     std::optional<Orientation> naki_orientations[MAX_NAKI_GROUPS];
-    std::optional<Orientation> tile_source;
+    std::optional<Orientation> bakaze;
+    std::optional<Orientation> jikaze;
+
     // The pieces[HAND_SIZE - 1] is always the new draw or discard.
     // Naki (open calls) should always be arranged to the right,
     //    but Kans are still stored as 3 pieces.

@@ -48,8 +48,9 @@ constexpr Piece RIICHI_PIECES[] {
     {PieceType::Hatsu, 0}, {PieceType::Hatsu, 1}, {PieceType::Hatsu, 2}, {PieceType::Hatsu, 3},
     {PieceType::Chun, 0}, {PieceType::Chun, 1}, {PieceType::Chun, 2}, {PieceType::Chun, 3}
 };
-
 static_assert(sizeof(RIICHI_PIECES) / sizeof(Piece) == RIICHI_NUM_PIECE);
+
+constexpr Piece riichi_piece(size_t index) { return RIICHI_PIECES[index]; }
 
 } // namespace mahjcalc
 
