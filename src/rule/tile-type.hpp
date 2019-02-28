@@ -46,7 +46,7 @@ constexpr TileTypeCat category_of_tile_type[] {
 };
 constexpr TileTypeCat category(TileType p) { return category_of_tile_type[underlying(p)]; }
 
-using TileTypeNum = std::uint_fast8_t;
+using TileTypeNum = mc_ushort;
 constexpr TileTypeNum number_of_tile_type[] {
     /* Man */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
     /* Pin */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -57,27 +57,53 @@ constexpr TileTypeNum number_of_tile_type[] {
 };
 constexpr TileTypeNum number(TileType p) { return number_of_tile_type[underlying(p)]; }
 
-constexpr TileType dora_of_tile_type[] {
-    // Man
-    TileType::M2, TileType::M3, TileType::M4,
-    TileType::M5, TileType::M6, TileType::M7,
-    TileType::M8, TileType::M9, TileType::M1,
-    // Pin
-    TileType::P2, TileType::P3, TileType::P4,
-    TileType::P5, TileType::P6, TileType::P7,
-    TileType::P8, TileType::P9, TileType::P1,
-    // Sou
-    TileType::S2, TileType::S3, TileType::S4,
-    TileType::S5, TileType::S6, TileType::S7,
-    TileType::S8, TileType::S9, TileType::S1,
-    // Kaze
-    TileType::S, TileType::W, TileType::N, TileType::E,
-    // Sangen
-    TileType::Hatsu, TileType::Chun, TileType::Haku,
-    // Undefined
-    TileType::Undefined
+template< mc_ushort num_players > struct DoraTileType;
+template<> struct DoraTileType<4> {
+    static constexpr TileType value[] {
+        // Man
+        TileType::M2, TileType::M3, TileType::M4,
+        TileType::M5, TileType::M6, TileType::M7,
+        TileType::M8, TileType::M9, TileType::M1,
+        // Pin
+        TileType::P2, TileType::P3, TileType::P4,
+        TileType::P5, TileType::P6, TileType::P7,
+        TileType::P8, TileType::P9, TileType::P1,
+        // Sou
+        TileType::S2, TileType::S3, TileType::S4,
+        TileType::S5, TileType::S6, TileType::S7,
+        TileType::S8, TileType::S9, TileType::S1,
+        // Kaze
+        TileType::S, TileType::W, TileType::N, TileType::E,
+        // Sangen
+        TileType::Hatsu, TileType::Chun, TileType::Haku,
+        // Undefined
+        TileType::Undefined
+    };
 };
-constexpr TileType get_dora_from_indicator(TileType p) { return dora_of_tile_type[underlying(p)]; }
+template<> struct DoraTileType<3> {
+    static constexpr TileType value[] {
+        // Man
+        TileType::M9,        TileType::Undefined, TileType::Undefined,
+        TileType::Undefined, TileType::Undefined, TileType::Undefined,
+        TileType::Undefined, TileType::Undefined, TileType::M1,
+        // Pin
+        TileType::P2, TileType::P3, TileType::P4,
+        TileType::P5, TileType::P6, TileType::P7,
+        TileType::P8, TileType::P9, TileType::P1,
+        // Sou
+        TileType::S2, TileType::S3, TileType::S4,
+        TileType::S5, TileType::S6, TileType::S7,
+        TileType::S8, TileType::S9, TileType::S1,
+        // Kaze
+        TileType::S, TileType::W, TileType::N, TileType::E,
+        // Sangen
+        TileType::Hatsu, TileType::Chun, TileType::Haku,
+        // Undefined
+        TileType::Undefined
+    };
+};
+template< mc_ushort num_players >
+constexpr TileType get_dora_from_indicator(TileType p) { return DoraTileType::value[underlying(p)]; }
 
 } // namespace mahjcalc
 
