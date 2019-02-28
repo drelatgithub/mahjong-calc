@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-using namespace mahjcalc {
+namespace mahjcalc {
 
 using std::size_t;
 

@@ -9,11 +9,11 @@ namespace mahjcalc {
 struct Tile { TileType type; size_t id; };
 struct TileId { size_t index; };
 
-constexpr size_t RIICHI_TILE_PER_TYPE = 4;
-constexpr size_t RIICHI_NUM_TILE_TYPE = 34;
-constexpr size_t RIICHI_NUM_TILE = RIICHI_NUM_TILE_TYPE * RIICHI_TILE_PER_TYPE;
+constexpr size_t riichi_tile_per_type = 4;
+constexpr size_t riichi_num_tile_types = 34;
+constexpr size_t riichi_num_tiles = riichi_num_tile_types * riichi_tile_per_type;
 
-constexpr Tile RIICHI_TILES[] {
+constexpr Tile riichi_tiles[] {
     {TileType::M1, 0}, {TileType::M1, 1}, {TileType::M1, 2}, {TileType::M1, 3},
     {TileType::M2, 0}, {TileType::M2, 1}, {TileType::M2, 2}, {TileType::M2, 3},
     {TileType::M3, 0}, {TileType::M3, 1}, {TileType::M3, 2}, {TileType::M3, 3},
@@ -45,13 +45,13 @@ constexpr Tile RIICHI_TILES[] {
     {TileType::S, 0}, {TileType::S, 1}, {TileType::S, 2}, {TileType::S, 3},
     {TileType::W, 0}, {TileType::W, 1}, {TileType::W, 2}, {TileType::W, 3},
     {TileType::N, 0}, {TileType::N, 1}, {TileType::N, 2}, {TileType::N, 3},
-    {TileType::Haku, 0}, {TileType::Haku, 1}, {TileType::Haku, 2}, {TileType::Haku, 3},
+    {TileType::Haku,  0}, {TileType::Haku,  1}, {TileType::Haku,  2}, {TileType::Haku,  3},
     {TileType::Hatsu, 0}, {TileType::Hatsu, 1}, {TileType::Hatsu, 2}, {TileType::Hatsu, 3},
-    {TileType::Chun, 0}, {TileType::Chun, 1}, {TileType::Chun, 2}, {TileType::Chun, 3}
+    {TileType::Chun,  0}, {TileType::Chun,  1}, {TileType::Chun,  2}, {TileType::Chun,  3}
 };
-static_assert(sizeof(RIICHI_TILES) / sizeof(Tile) == RIICHI_NUM_TILE);
+static_assert(sizeof(riichi_tiles) / sizeof(Tile) == riichi_num_tiles);
 
-constexpr Tile riichi_tile(TileId i) { return RIICHI_TILES[i.index]; }
+constexpr Tile riichi_tile(TileId i) { return riichi_tiles[i.index]; }
 
 } // namespace mahjcalc
 

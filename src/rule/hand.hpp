@@ -14,20 +14,20 @@ enum class NakiType {
 };
 
 struct Hand {
-    static constexpr size_t HAND_SIZE = 14;
-    static constexpr size_t MAX_NAKI_GROUPS = 4;
+    static constexpr size_t hand_size = 14;
+    static constexpr size_t max_naki_groups = 4;
 
-    TileId      tiles[HAND_SIZE];
-    NakiType    nakis[MAX_NAKI_GROUPS];
+    TileId      tiles[hand_size];
+    NakiType    nakis[max_naki_groups];
 
     Orientation tile_source;
 
     // Meta data
-    std::optional<Orientation> naki_orientations[MAX_NAKI_GROUPS];
+    std::optional<Orientation> naki_orientations[max_naki_groups];
     std::optional<Orientation> bakaze;
     std::optional<Orientation> jikaze;
 
-    // The tiles[HAND_SIZE - 1] is always the new draw or discard.
+    // The tiles[hand_size - 1] is always the new draw or discard.
     // Naki (open calls) should always be arranged to the right,
     //    but Kans are still stored as 3 tiles.
     // For Kakan, the orientation is the orientation of the previous Pon.

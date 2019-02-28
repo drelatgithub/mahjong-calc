@@ -8,7 +8,7 @@
 
 namespace mahjcalc {
 
-constexpr size_t NUM_TILE_TYPE = 35; // Including Undefined
+constexpr size_t num_tile_types = 35; // Including Undefined
 
 // Red Doras are not considered here
 enum class TileType {
@@ -19,13 +19,12 @@ enum class TileType {
     Haku, Hatsu, Chun,
     Undefined
 };
-using TileTypeUnderlying = std::underlying_type_t<TileType>;
-constexpr TileTypeUnderlying underlying(TileType p) { return static_cast<TileTypeUnderlying>(p); }
+constexpr auto underlying(TileType p) { return static_cast<std::underlying_type_t<TileType>>(p); }
 
 enum class TileTypeCat {
     Man, Pin, Sou, Kazehai, Sangenpai, Undefined
 };
-constexpr TileTypeCat CATEGORY_OF_TILE_TYPE[] {
+constexpr TileTypeCat category_of_tile_type[] {
     // Man
     TileTypeCat::Man, TileTypeCat::Man, TileTypeCat::Man,
     TileTypeCat::Man, TileTypeCat::Man, TileTypeCat::Man,
@@ -45,10 +44,10 @@ constexpr TileTypeCat CATEGORY_OF_TILE_TYPE[] {
     // Undefined
     TileTypeCat::Undefined
 };
-constexpr TileTypeCat category(TileType p) { return CATEGORY_OF_TILE_TYPE[underlying(p)]; }
+constexpr TileTypeCat category(TileType p) { return category_of_tile_type[underlying(p)]; }
 
 using TileTypeNum = std::uint_fast8_t;
-constexpr TileTypeNum NUMBER_OF_TILE_TYPE[] {
+constexpr TileTypeNum number_of_tile_type[] {
     /* Man */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
     /* Pin */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
     /* Sou */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -56,9 +55,9 @@ constexpr TileTypeNum NUMBER_OF_TILE_TYPE[] {
     /* Sangen */ 0, 0, 0,
     /* Undefined */ 0
 };
-constexpr TileTypeNum number(TileType p) { return NUMBER_OF_TILE_TYPE[underlying(p)]; }
+constexpr TileTypeNum number(TileType p) { return number_of_tile_type[underlying(p)]; }
 
-constexpr TileType DORA_OF_TILE_TYPE[] {
+constexpr TileType dora_of_tile_type[] {
     // Man
     TileType::M2, TileType::M3, TileType::M4,
     TileType::M5, TileType::M6, TileType::M7,
@@ -78,7 +77,7 @@ constexpr TileType DORA_OF_TILE_TYPE[] {
     // Undefined
     TileType::Undefined
 };
-constexpr TileType get_dora_from_indicator(TileType p) { return DORA_OF_TILE_TYPE[underlying(p)]; }
+constexpr TileType get_dora_from_indicator(TileType p) { return dora_of_tile_type[underlying(p)]; }
 
 } // namespace mahjcalc
 
