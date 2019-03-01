@@ -102,8 +102,10 @@ template<> struct DoraTileType<3> {
         TileType::Undefined
     };
 };
-template< mc_ushort num_players >
-constexpr TileType get_dora_from_indicator(TileType p) { return DoraTileType::value[underlying(p)]; }
+template< typename Rule >
+constexpr TileType get_dora_from_indicator(TileType p) {
+    return DoraTileType<Rule::num_players>::value[underlying(p)];
+}
 
 } // namespace mahjcalc
 

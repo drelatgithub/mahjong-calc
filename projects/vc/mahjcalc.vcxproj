@@ -11,14 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\**\*.cpp"/>
-    <ClInclude Include="..\..\src\**\*.h; ..\..\src\**\*.hpp"/>
+    <ClCompile Include="..\..\src\**\*.cpp" />
+    <ClInclude Include="..\..\src\**\*.h; ..\..\src\**\*.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{42B694F4-C6FE-4039-8F68-EB063A43ED0F}</ProjectGuid>
     <RootNamespace>mahjcalc</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
