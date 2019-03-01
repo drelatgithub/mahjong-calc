@@ -14,5 +14,6 @@ int main() {
 
 	cout << hand.tiles[3].index << endl;
 
+	system("pause");
     return 0;
 }
