@@ -13,6 +13,10 @@ struct RuleSet {
         Riichi, Custom
     };
     static constexpr TopCategory top_category = TopCategory::Riichi;
+
+    // Detailed game settings
+    static constexpr bool enable_yaku_chitoitsu = true;
+    static constexpr bool enable_yaku_kokushi_musou = true;
 };
 
 } // namespace ruleset

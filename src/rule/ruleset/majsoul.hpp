@@ -6,7 +6,18 @@
 namespace mahjcalc {
 namespace ruleset {
 
-struct RuleSetMajsoul : RuleSetRiichi {};
+struct DefaultConfigMajsoul {
+    constexpr static mc_ushort num_players = 4;
+    constexpr static mc_ushort num_red_doras = 3;
+    constexpr static bool kuitan = true;
+    constexpr static bool tsumoson = true;
+};
+
+template< typename ConfigMajsoul >
+struct RuleSetMajsoul : RuleSetRiichi {
+    constexpr static mc_ushort num_players = ConfigMajsoul::num_players;
+};
+using RuleSetMajsoulDefaultConfig = RuleSetMajsoul< DefaultConfigMajsoul >;
 
 } // namespace ruleset
 } // namespace mahjcalc

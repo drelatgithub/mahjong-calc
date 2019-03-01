@@ -8,7 +8,7 @@
 
 namespace mahjcalc {
 
-constexpr size_t num_tile_types = 35; // Including Undefined
+constexpr size_t num_tile_types_total = 35; // Including Undefined
 
 // Red Doras are not considered here
 enum class TileType {

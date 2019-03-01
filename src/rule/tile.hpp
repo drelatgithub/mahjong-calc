@@ -10,12 +10,12 @@ namespace mahjcalc {
 struct Tile { TileType type; size_t id; };
 struct TileId { size_t index; };
 
-constexpr mc_ushort tiles_per_type = 4;
+constexpr mc_ushort num_tiles_per_type = 4;
 
 template< ruleset::RuleSet::TopCategory, mc_ushort num_players > struct TileSet;
 template<> struct TileSet<ruleset::RuleSet::TopCategory::Riichi, 4> {
     static constexpr size_t num_tile_types = 34;
-    static constexpr size_t num_tiles = num_tile_types * tiles_per_type;
+    static constexpr size_t num_tiles = num_tile_types * num_tiles_per_type;
     static constexpr Tile value[] {
         {TileType::M1, 0}, {TileType::M1, 1}, {TileType::M1, 2}, {TileType::M1, 3},
         {TileType::M2, 0}, {TileType::M2, 1}, {TileType::M2, 2}, {TileType::M2, 3},
@@ -56,7 +56,7 @@ template<> struct TileSet<ruleset::RuleSet::TopCategory::Riichi, 4> {
 };
 template<> struct TileSet<ruleset::RuleSet::TopCategory::Riichi, 3> {
     static constexpr size_t num_tile_types = 27;
-    static constexpr size_t num_tiles = num_tile_types * tiles_per_type;
+    static constexpr size_t num_tiles = num_tile_types * num_tiles_per_type;
     static constexpr Tile value[] {
         {TileType::M1, 0}, {TileType::M1, 1}, {TileType::M1, 2}, {TileType::M1, 3},
         {TileType::M9, 0}, {TileType::M9, 1}, {TileType::M9, 2}, {TileType::M9, 3},
