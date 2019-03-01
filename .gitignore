@@ -1,0 +1,6 @@
+# Editor, IDE
+.vs/
+
+# Compile artifacts
+# Visual Studio
+projects/vc/mahjcalc/
