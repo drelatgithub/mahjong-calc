@@ -1,35 +1,41 @@
+#include <array>
 #include <iostream>
+#include <iterator>
 
 #include "rule/hand.hpp"
 #include "rule/ruleset/majsoul.hpp"
-#include "rule/winning-hand.hpp"
+#include "rule/complete-hand.hpp"
+#include "shuffle.hpp"
 
 int main() {
 
     using namespace mahjcalc;
 	using namespace std;
+	using R = ruleset::RuleSetMajsoulDefaultConfig;
 
-	Hand hand1{
-		{0, 5, 8, 13, 16, 20, 24, 28, 32, 112, 109, 110, 108, 113},
-		{NakiType::None, NakiType::None, NakiType::None, NakiType::Pon}
-	};
-	Hand hand2{
-		{112, 5, 8, 13, 16, 20, 0, 28, 32, 24, 109, 110, 108, 113},
-		{NakiType::None, NakiType::None, NakiType::Chii, NakiType::Pon}
-	};
-	Hand kokushi{
-		{112, 124, 128, 132, 104, 108, 0, 36, 32, 72, 68, 110, 116, 120},
-		{NakiType::None, NakiType::None, NakiType::None, NakiType::None}
-	};
-	Hand chitoi{
-		{0,1,2,3,4,5,6,7,8,9,10,11,100,101},
-		{}
-	};
-
-	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(hand1) << endl;
-	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(hand2) << endl;
-	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(kokushi) << endl;
-	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(chitoi) << endl;
+	std::array< size_t, num_tiles<R>() > arr;
+	static constexpr auto full_hand_size = Hand::hand_size;
+	static constexpr auto iter_per_shuffle = num_tiles<R>() / full_hand_size;
+	const size_t max_iter = 200000000;
+	size_t num_tenhou = 0;
+	for(size_t i = 0; i < max_iter; ++i) {
+		if(i % iter_per_shuffle == 0) {
+			re_shuffle(arr);
+		}
+		Hand h{};
+		std::copy(
+			arr.begin() + (i % iter_per_shuffle) * full_hand_size,
+			arr.begin() + (i % iter_per_shuffle + 1) * full_hand_size,
+			std::begin(h.tiles)
+		);
+		if (i % 100000 == 0) cout << "iter " << i << endl;
+		if (is_complete_hand<R>(h)) {
+			for (auto& t : h.tiles) cout << name(tile<R>(t).type) << ' ';
+			cout << endl;
+			++num_tenhou;
+		}
+	}
+	cout << "Tenhou: " << num_tenhou << "/" << max_iter << endl;
 
 	system("pause");
     return 0;

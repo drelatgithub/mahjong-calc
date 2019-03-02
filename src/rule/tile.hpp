@@ -8,7 +8,11 @@
 namespace mahjcalc {
 
 struct Tile { TileType type; size_t id; };
-struct TileId { size_t index; };
+struct TileId {
+    size_t index;
+    TileId& operator=(size_t new_index) { index = new_index; return *this; }
+    explicit operator size_t() const { return index; }
+};
 
 constexpr mc_ushort num_tiles_per_type = 4;
 
@@ -89,6 +93,8 @@ template<> struct TileSet<ruleset::RuleSet::TopCategory::Riichi, 3> {
     static_assert(sizeof(value) / sizeof(Tile) == num_tiles);
 };
 
+template< typename Rule >
+constexpr size_t num_tiles() { return TileSet<Rule::top_category, Rule::num_players>::num_tiles; }
 template< typename Rule >
 constexpr Tile tile(TileId i) { return TileSet<Rule::top_category, Rule::num_players>::value[i.index]; }
 

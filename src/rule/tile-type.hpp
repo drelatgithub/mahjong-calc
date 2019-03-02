@@ -20,6 +20,15 @@ enum class TileType {
     Undefined
 };
 constexpr auto underlying(TileType p) { return static_cast<std::underlying_type_t<TileType>>(p); }
+constexpr const char* tile_type_name[] {
+    "1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m", "9m",
+    "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p",
+    "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s",
+    "E", "S", "W", "N",
+    "Haku", "Hatsu", "Chun",
+    "Undefined"
+};
+constexpr auto name(TileType t) { return tile_type_name[underlying(t)]; }
 
 enum class TileTypeCat {
     Man, Pin, Sou, Kazehai, Sangenpai, Undefined
@@ -44,7 +53,8 @@ constexpr TileTypeCat category_of_tile_type[] {
     // Undefined
     TileTypeCat::Undefined
 };
-constexpr TileTypeCat category(TileType p) { return category_of_tile_type[underlying(p)]; }
+constexpr TileTypeCat category(size_t tile_type_index) { return category_of_tile_type[tile_type_index]; }
+constexpr TileTypeCat category(TileType p) { return category(underlying(p)); }
 
 using TileTypeNum = mc_ushort;
 constexpr TileTypeNum number_of_tile_type[] {
@@ -56,6 +66,44 @@ constexpr TileTypeNum number_of_tile_type[] {
     /* Undefined */ 0
 };
 constexpr TileTypeNum number(TileType p) { return number_of_tile_type[underlying(p)]; }
+
+template< mc_ushort num_players > struct CanStartShuntsu;
+template<> struct CanStartShuntsu<4> {
+    static constexpr bool value[] {
+        // Man, Pin, Sou
+        true, true, true, true, true, true, true, false, false,
+        true, true, true, true, true, true, true, false, false,
+        true, true, true, true, true, true, true, false, false,
+        // Kaze
+        false, false, false, false,
+        // Sangen
+        false, false, false, false,
+        // Undefined
+        false
+    };
+};
+template<> struct CanStartShuntsu<5> {
+    static constexpr bool value[] {
+        // Man, Pin, Sou
+        false, false, false, false, false, false, false, false, false,
+        true, true, true, true, true, true, true, false, false,
+        true, true, true, true, true, true, true, false, false,
+        // Kaze
+        false, false, false, false,
+        // Sangen
+        false, false, false, false,
+        // Undefined
+        false
+    };
+};
+template< typename Rule >
+constexpr bool can_start_shuntsu(size_t tile_type_index) {
+    return CanStartShuntsu<Rule::num_players>::value[tile_type_index];
+}
+template< typename Rule >
+constexpr bool can_start_shuntsu(TileType t) {
+    return can_start_shuntsu<Rule>(underlying(t));
+}
 
 template< mc_ushort num_players > struct DoraTileType;
 template<> struct DoraTileType<4> {
