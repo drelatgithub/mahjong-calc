@@ -55,6 +55,9 @@ bool is_complete_hand(const Hand& h) {
         }
     }
 
+    // Search for triplets and a pair
+    constexpr auto max_num_triplets = Hand::max_naki_groups;
+    const auto num_triplets = num_remaining_tiles / 3;
     // TODO
 
     using namespace std;
