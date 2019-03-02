@@ -1,5 +1,5 @@
-#ifndef MAHJCALC_RULE_WINNING_HAND_HPP
-#define MAHJCALC_RULE_WINNING_HAND_HPP
+#ifndef MAHJCALC_RULE_COMPLETE_HAND_HPP
+#define MAHJCALC_RULE_COMPLETE_HAND_HPP
 
 #include<iostream>
 
@@ -8,8 +8,9 @@
 
 namespace mahjcalc {
 
+// The hand completeness does not require yakus.
 template< typename Rule >
-bool is_winning_hand(const Hand& h) {
+bool is_complete_hand(const Hand& h) {
     constexpr auto num_tile_types = TileSet<Rule::top_category, Rule::num_players>::num_tile_types;
     mc_ushort hand_layout_non_naki[num_tile_types] {};
 
@@ -45,7 +46,10 @@ bool is_winning_hand(const Hand& h) {
         if(num_nakis == 0) {
             bool is_chitoitsu = true;
             for(size_t i = 0; i < num_tile_types; ++i) {
-                if(hand_layout_non_naki[i] % 2) { is_chitoitsu = false; break; }
+                if(hand_layout_non_naki[i] != 0 && hand_layout_non_naki[i] != 2) {
+                    is_chitoitsu = false;
+                    break;
+                }
             }
             if(is_chitoitsu) return true;
         }

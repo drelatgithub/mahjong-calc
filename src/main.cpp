@@ -26,10 +26,10 @@ int main() {
 		{}
 	};
 
-	cout << is_winning_hand<ruleset::RuleSetMajsoulDefaultConfig>(hand1) << endl;
-	cout << is_winning_hand<ruleset::RuleSetMajsoulDefaultConfig>(hand2) << endl;
-	cout << is_winning_hand<ruleset::RuleSetMajsoulDefaultConfig>(kokushi) << endl;
-	cout << is_winning_hand<ruleset::RuleSetMajsoulDefaultConfig>(chitoi) << endl;
+	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(hand1) << endl;
+	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(hand2) << endl;
+	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(kokushi) << endl;
+	cout << is_complete_hand<ruleset::RuleSetMajsoulDefaultConfig>(chitoi) << endl;
 
 	system("pause");
     return 0;
