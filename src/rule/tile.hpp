@@ -52,9 +52,9 @@ template<> struct TileSet<ruleset::RuleSet::TopCategory::Riichi, 4> {
         {TileType::S, 0}, {TileType::S, 1}, {TileType::S, 2}, {TileType::S, 3},
         {TileType::W, 0}, {TileType::W, 1}, {TileType::W, 2}, {TileType::W, 3},
         {TileType::N, 0}, {TileType::N, 1}, {TileType::N, 2}, {TileType::N, 3},
-        {TileType::Haku,  0}, {TileType::Haku,  1}, {TileType::Haku,  2}, {TileType::Haku,  3},
-        {TileType::Hatsu, 0}, {TileType::Hatsu, 1}, {TileType::Hatsu, 2}, {TileType::Hatsu, 3},
-        {TileType::Chun,  0}, {TileType::Chun,  1}, {TileType::Chun,  2}, {TileType::Chun,  3}
+        {TileType::Hk, 0}, {TileType::Hk, 1}, {TileType::Hk, 2}, {TileType::Hk, 3},
+        {TileType::Ht, 0}, {TileType::Ht, 1}, {TileType::Ht, 2}, {TileType::Ht, 3},
+        {TileType::Cn, 0}, {TileType::Cn, 1}, {TileType::Cn, 2}, {TileType::Cn, 3}
     };
     static_assert(sizeof(value) / sizeof(Tile) == num_tiles);
 };
@@ -86,9 +86,9 @@ template<> struct TileSet<ruleset::RuleSet::TopCategory::Riichi, 3> {
         {TileType::S, 0}, {TileType::S, 1}, {TileType::S, 2}, {TileType::S, 3},
         {TileType::W, 0}, {TileType::W, 1}, {TileType::W, 2}, {TileType::W, 3},
         {TileType::N, 0}, {TileType::N, 1}, {TileType::N, 2}, {TileType::N, 3},
-        {TileType::Haku,  0}, {TileType::Haku,  1}, {TileType::Haku,  2}, {TileType::Haku,  3},
-        {TileType::Hatsu, 0}, {TileType::Hatsu, 1}, {TileType::Hatsu, 2}, {TileType::Hatsu, 3},
-        {TileType::Chun,  0}, {TileType::Chun,  1}, {TileType::Chun,  2}, {TileType::Chun,  3}
+        {TileType::Hk, 0}, {TileType::Hk, 1}, {TileType::Hk, 2}, {TileType::Hk, 3},
+        {TileType::Ht, 0}, {TileType::Ht, 1}, {TileType::Ht, 2}, {TileType::Ht, 3},
+        {TileType::Cn, 0}, {TileType::Cn, 1}, {TileType::Cn, 2}, {TileType::Cn, 3}
     };
     static_assert(sizeof(value) / sizeof(Tile) == num_tiles);
 };

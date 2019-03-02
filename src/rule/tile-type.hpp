@@ -16,7 +16,7 @@ enum class TileType {
     P1, P2, P3, P4, P5, P6, P7, P8, P9,
     S1, S2, S3, S4, S5, S6, S7, S8, S9,
     E, S, W, N,
-    Haku, Hatsu, Chun,
+    Hk, Ht, Cn, // As in Haku, Hatsu, Chun
     Undefined
 };
 constexpr auto underlying(TileType p) { return static_cast<std::underlying_type_t<TileType>>(p); }
@@ -24,8 +24,8 @@ constexpr const char* tile_type_name[] {
     "1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m", "9m",
     "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p",
     "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s",
-    "E", "S", "W", "N",
-    "Haku", "Hatsu", "Chun",
+    "E ", "S ", "W ", "N ",
+    "Hk", "Ht", "Cn",
     "Undefined"
 };
 constexpr auto name(TileType t) { return tile_type_name[underlying(t)]; }
@@ -123,7 +123,7 @@ template<> struct DoraTileType<4> {
         // Kaze
         TileType::S, TileType::W, TileType::N, TileType::E,
         // Sangen
-        TileType::Hatsu, TileType::Chun, TileType::Haku,
+        TileType::Ht, TileType::Cn, TileType::Hk,
         // Undefined
         TileType::Undefined
     };
@@ -145,7 +145,7 @@ template<> struct DoraTileType<3> {
         // Kaze
         TileType::S, TileType::W, TileType::N, TileType::E,
         // Sangen
-        TileType::Hatsu, TileType::Chun, TileType::Haku,
+        TileType::Ht, TileType::Cn, TileType::Hk,
         // Undefined
         TileType::Undefined
     };

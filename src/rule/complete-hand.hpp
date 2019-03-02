@@ -36,9 +36,9 @@ bool is_complete_hand(const Hand& h) {
             hand_layout_non_naki[underlying(TileType::S)] >= 1 &&
             hand_layout_non_naki[underlying(TileType::W)] >= 1 &&
             hand_layout_non_naki[underlying(TileType::N)] >= 1 &&
-            hand_layout_non_naki[underlying(TileType::Haku)] >= 1 &&
-            hand_layout_non_naki[underlying(TileType::Hatsu)] >= 1 &&
-            hand_layout_non_naki[underlying(TileType::Chun)] >= 1
+            hand_layout_non_naki[underlying(TileType::Hk)] >= 1 &&
+            hand_layout_non_naki[underlying(TileType::Ht)] >= 1 &&
+            hand_layout_non_naki[underlying(TileType::Cn)] >= 1
         ) {
             // Debug
             std::cout<<"Kokushi musou"<<std::endl;
