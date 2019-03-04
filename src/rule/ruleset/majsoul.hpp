@@ -13,10 +13,18 @@ struct DefaultConfigMajsoul {
     constexpr static bool tsumoson = true;
 };
 
+namespace internal {
+
 template< typename ConfigMajsoul >
-struct RuleSetMajsoul : RuleSetRiichi {
-    constexpr static mc_ushort num_players = ConfigMajsoul::num_players;
+struct ConfigRiichiFromMajsoul {
+    static constexpr mc_ushort num_players = ConfigMajsoul::num_players;
 };
+
+} // namespace internal
+
+template< typename ConfigMajsoul >
+struct RuleSetMajsoul : RuleSetRiichi< internal::ConfigRiichiFromMajsoul<ConfigMajsoul> > {};
+
 using RuleSetMajsoulDefaultConfig = RuleSetMajsoul< DefaultConfigMajsoul >;
 
 } // namespace ruleset

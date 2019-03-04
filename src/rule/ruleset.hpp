@@ -17,6 +17,8 @@ struct RuleSet {
     // Detailed game settings
     static constexpr bool enable_yaku_chitoitsu = true;
     static constexpr bool enable_yaku_kokushi_musou = true;
+    static constexpr size_t max_kan_allowed = 4;
+    static constexpr size_t num_dora_indicators = 0;
 };
 
 } // namespace ruleset
