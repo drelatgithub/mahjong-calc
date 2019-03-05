@@ -4,6 +4,7 @@
 #include <array>
 
 #include "rule/hand.hpp"
+#include "rule/orientation.hpp"
 #include "rule/tile.hpp"
 
 namespace mahjcalc {
@@ -12,7 +13,7 @@ template< typename Rule >
 constexpr size_t num_rinshan_tiles() { return Rule::num_players == 4 ? 4 : 8; }
 
 template< typename Rule >
-struct TileTracker {
+struct Haiyama {
     static constexpr size_t num_tiles = num_tiles< Rule >();
     static constexpr size_t num_rinshan_tiles = num_rinshan_tiles< Rule >();
     static constexpr size_t num_dora_indicators = Rule::num_dora_indicators;
@@ -36,7 +37,13 @@ struct TileTracker {
         "Max kan number cannot exceed number of closed doras."
     );
 
+    struct TileState {
+        enum class Type { Wall, Hand, Discard, Dead };
+        Type type;
+    };
+
     std::array< size_t, num_tiles > idx_tiles;
+    std::array< TileState, num_tiles > state_tiles;
 
     size_t idx_next_tile; // Next tile to draw
     size_t idx_haitei_tile; // Last tile to draw
@@ -48,7 +55,20 @@ struct TileTracker {
         idx_haitei_tile = num_tiles - num_rinshan_tiles - 2 * num_dora_indicators - 1;
         num_remaining_rinshan_tiles = num_rinshan_tiles;
         num_open_dora_indicators = 1;
+
+        for(size_t i = 0; i < idx_next_tile; ++i) state_tiles[i] = TileState::Type::Hand;
+        for(size_t i = idx_next_tile; i <= idx_haitei_tile; ++i) state_tiles[i] = TileState::Type::Wall;
+        for(size_t i = idx_haitei_tile + 1; i < num_tiles; ++i) state_tiles[i] = TileState::Type::Dead;
     }
+};
+
+template< typename Rule >
+struct Table {
+    static constexpr size_t num_tiles = num_tiles< Rule >();
+
+    Haiyama< Rule > haiyama;
+
+    Kaze bakaze;
 };
 
 } // namespace mahjcalc
