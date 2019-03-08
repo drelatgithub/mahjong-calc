@@ -2,6 +2,7 @@
 #define MAHJCALC_RULE_PLAYER_HPP
 
 #include "common.hpp"
+#include "rule/hand.hpp"
 
 namespace mahjcalc {
 
@@ -15,6 +16,10 @@ struct Operation {
     };
     Type type;
     size_t code;
+};
+
+struct Player {
+    Hand hand;
 };
 
 } // namespace mahjcalc

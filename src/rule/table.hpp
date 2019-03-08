@@ -5,6 +5,7 @@
 
 #include "rule/hand.hpp"
 #include "rule/orientation.hpp"
+#include "rule/player.hpp"
 #include "rule/tile.hpp"
 
 namespace mahjcalc {
@@ -64,11 +65,35 @@ struct Haiyama {
 
 template< typename Rule >
 struct Table {
+    static constexpr mc_ushort num_players = Rule::num_players;
     static constexpr size_t num_tiles = num_tiles< Rule >();
 
     Haiyama< Rule > haiyama;
 
     Kaze bakaze;
+    mc_ushort oya_slot;
+
+    void feed(Operation op) {
+        switch(op.type) {
+        case Operation::Type::Discard:
+            // Update player hands with discard
+            // and poll discard related events
+        case Operation::Type::RiichiDiscard:
+            // Update discarding player state as riichi
+            // and update player hands with discard
+            // and poll discard related events
+        case Operation::Type::Tsumo:
+            // Update game state as ending
+            // Update winning player
+            // Do aftergame stuff
+        case Operation::Type::Ron:
+            // Update game state as ending
+            // Update winning/losing player
+            // after game
+        case Operation::Type::Chi:
+            // ...
+        }
+    }
 };
 
 } // namespace mahjcalc
