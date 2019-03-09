@@ -91,7 +91,19 @@ struct Table {
             // Update winning/losing player
             // after game
         case Operation::Type::Chi:
-            // ...
+            // If in poll... wait for the poll
+            // If not in poll...
+            //   update naki and update hand
+        case Operation::Type::Pon:
+            // If in poll... update poll result
+            // else update naki and hand
+        case Operation::Type::Kan:
+            // If in poll... update poll result
+            // else update naki and hand
+        case Operation::Type::KyuushuuKyuuhai:
+            // ???
+        case Operation::Type::Cancel:
+            // ???
         }
     }
 };
