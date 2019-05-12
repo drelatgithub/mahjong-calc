@@ -56,8 +56,7 @@ constexpr TileTypeCat category_of_tile_type[] {
 constexpr TileTypeCat category(size_t tile_type_index) { return category_of_tile_type[tile_type_index]; }
 constexpr TileTypeCat category(TileType p) { return category(underlying(p)); }
 
-using TileTypeNum = mc_ushort;
-constexpr TileTypeNum number_of_tile_type[] {
+constexpr mc_uif8 number_of_tile_type[] {
     /* Man */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
     /* Pin */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
     /* Sou */ 1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -65,9 +64,9 @@ constexpr TileTypeNum number_of_tile_type[] {
     /* Sangen */ 0, 0, 0,
     /* Undefined */ 0
 };
-constexpr TileTypeNum number(TileType p) { return number_of_tile_type[underlying(p)]; }
+constexpr mc_uif8 number(TileType p) { return number_of_tile_type[underlying(p)]; }
 
-template< mc_ushort num_players > struct CanStartShuntsu;
+template< mc_uif8 num_players > struct CanStartShuntsu;
 template<> struct CanStartShuntsu<4> {
     static constexpr bool value[] {
         // Man, Pin, Sou
@@ -77,12 +76,12 @@ template<> struct CanStartShuntsu<4> {
         // Kaze
         false, false, false, false,
         // Sangen
-        false, false, false, false,
+        false, false, false,
         // Undefined
         false
     };
 };
-template<> struct CanStartShuntsu<5> {
+template<> struct CanStartShuntsu<3> {
     static constexpr bool value[] {
         // Man, Pin, Sou
         false, false, false, false, false, false, false, false, false,
@@ -91,7 +90,7 @@ template<> struct CanStartShuntsu<5> {
         // Kaze
         false, false, false, false,
         // Sangen
-        false, false, false, false,
+        false, false, false,
         // Undefined
         false
     };
@@ -105,7 +104,7 @@ constexpr bool can_start_shuntsu(TileType t) {
     return can_start_shuntsu<Rule>(underlying(t));
 }
 
-template< mc_ushort num_players > struct DoraTileType;
+template< mc_uif8 num_players > struct DoraTileType;
 template<> struct DoraTileType<4> {
     static constexpr TileType value[] {
         // Man

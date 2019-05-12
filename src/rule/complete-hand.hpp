@@ -1,5 +1,5 @@
-#ifndef MAHJCALC_RULE_COMPLETE_HAND_HPP
-#define MAHJCALC_RULE_COMPLETE_HAND_HPP
+#ifndef Mahjcalc_Rule_CompleteHand_Hpp
+#define Mahjcalc_Rule_CompleteHand_Hpp
 
 #include<iostream>
 
@@ -12,7 +12,7 @@ namespace mahjcalc {
 template< typename Rule >
 bool is_complete_hand(const Hand& h) {
     constexpr auto num_tile_types = TileSet<Rule::top_category, Rule::num_players>::num_tile_types;
-    mc_ushort hand_layout_non_naki[num_tile_types] {};
+    mc_uif8 hand_layout_non_naki[num_tile_types] {};
 
     size_t num_nakis = 0;
     for(size_t i = 0; i < Hand::max_naki_groups; ++i)
@@ -65,16 +65,16 @@ bool is_complete_hand(const Hand& h) {
 
     // Search for mentsus and a pair
     // Try precedence: Koutsu -> Jantou -> Shuntsu
-    static constexpr mc_ushort try_none    = 0;
-    static constexpr mc_ushort try_koutsu  = 1;
-    static constexpr mc_ushort try_jantou  = 2;
-    static constexpr mc_ushort try_shuntsu = 3;
+    static constexpr mc_uif8 try_none    = 0;
+    static constexpr mc_uif8 try_koutsu  = 1;
+    static constexpr mc_uif8 try_jantou  = 2;
+    static constexpr mc_uif8 try_shuntsu = 3;
 
     static constexpr auto      max_num_mentsus = Hand::max_naki_groups;
-    static constexpr mc_ushort max_num_jantous = 1;
+    static constexpr mc_uif8 max_num_jantous = 1;
     static constexpr auto      max_num_groups  = max_num_mentsus + max_num_jantous;
     const            auto      num_mentsus     = num_remaining_tiles / 3;
-    const            mc_ushort num_jantous     = 1;
+    const            mc_uif8 num_jantous     = 1;
     const            auto      num_groups      = num_mentsus + num_jantous;
 
     size_t cur_num_mentsus = 0;
@@ -82,7 +82,7 @@ bool is_complete_hand(const Hand& h) {
     const auto cur_num_groups = [&] { return cur_num_mentsus + cur_num_jantous; };
 
     size_t    groups       [max_num_groups] {};
-    mc_ushort group_tries  [max_num_groups] {};
+    mc_uif8 group_tries  [max_num_groups] {};
     bool      group_certain[max_num_groups] {};
 
     size_t type_index = 0;

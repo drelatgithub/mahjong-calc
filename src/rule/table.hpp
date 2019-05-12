@@ -1,5 +1,5 @@
-#ifndef MAHJCALC_RULE_TABLE_HPP
-#define MAHJCALC_RULE_TABLE_HPP
+#ifndef Mahjcalc_Rule_Table_Hpp
+#define Mahjcalc_Rule_Table_Hpp
 
 #include <array>
 
@@ -63,17 +63,57 @@ struct Haiyama {
     }
 };
 
+//-----------------------------------------------------------------------------
+// The table contains all the information and status of a game.
+//
+// The players and observers interact with the table via functions provided.
+//
+// Table is a state machine.
+//
+// TODO: make Table thread-safe for async observations/operations.
+//-----------------------------------------------------------------------------
 template< typename Rule >
-struct Table {
-    static constexpr mc_ushort num_players = Rule::num_players;
+class Table {
+public:
+    static constexpr mc_uif8 num_players = Rule::num_players;
     static constexpr size_t num_tiles = num_tiles< Rule >();
 
+private:
+
+    // Table mode and records
+    //-------------------------------------------------------------------------
+    bool record_mode_;
+    // Some_struct record_;
+
+    // Current round table information
+    //-------------------------------------------------------------------------
+    // RoundCount counter_;
     Haiyama< Rule > haiyama;
 
-    Kaze bakaze;
-    mc_ushort oya_slot;
+    mc_uif8 oya_slot;
 
-    void feed(Operation op) {
+    // Current round player information
+    //-------------------------------------------------------------------------
+    Hand hands_   [num_players];
+    bool need_op_ [num_players];
+
+public:
+
+    //-------------------------------------------------------------------------
+    // The feed function takes a player operation and returns whether the
+    // operation is valid.
+    //
+    // Note: an operation does not need to take effect for being valid. For
+    // example, a player is allowed to declare Pon on a discard, so Pon is a
+    // valid operation. But meanwhile, another player might declare a valid Ron
+    // on this tile, then the Ron takes precedence and the Pon does not take
+    // effect.
+    //-------------------------------------------------------------------------
+    bool feed(mc_uif8 player, Operation op) {
+
+        // Return if this player cannot make operation
+        if(!need_op_[player]) return false;
+
         switch(op.type) {
         case Operation::Type::Discard:
             // Update player hands with discard

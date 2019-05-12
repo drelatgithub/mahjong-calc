@@ -7,7 +7,7 @@
 namespace mahjcalc {
 
 using std::size_t;
-using mc_ushort = std::uint_fast8_t;
+using mc_uif8 = std::uint_fast8_t;
 
 } // namespace mahjcalc
 

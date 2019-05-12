@@ -14,9 +14,9 @@ struct TileId {
     explicit operator size_t() const { return index; }
 };
 
-constexpr mc_ushort num_tiles_per_type = 4;
+constexpr mc_uif8 num_tiles_per_type = 4;
 
-template< ruleset::RuleSet::TopCategory, mc_ushort num_players > struct TileSet;
+template< ruleset::RuleSet::TopCategory, mc_uif8 num_players > struct TileSet;
 template<> struct TileSet<ruleset::RuleSet::TopCategory::Riichi, 4> {
     static constexpr size_t num_tile_types = 34;
     static constexpr size_t num_tiles = num_tile_types * num_tiles_per_type;
