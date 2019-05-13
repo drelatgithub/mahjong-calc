@@ -2,7 +2,7 @@
 #define MAHJCALC_RULE_TILE_HPP
 
 #include "common.hpp"
-#include "rule/ruleset.hpp"
+#include "rule/rule-set.hpp"
 #include "rule/tile-type.hpp"
 
 namespace mahjcalc {

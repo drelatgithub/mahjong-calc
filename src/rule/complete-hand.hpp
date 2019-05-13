@@ -70,20 +70,20 @@ bool is_complete_hand(const Hand& h) {
     static constexpr mc_uif8 try_jantou  = 2;
     static constexpr mc_uif8 try_shuntsu = 3;
 
-    static constexpr auto      max_num_mentsus = Hand::max_naki_groups;
+    static constexpr auto    max_num_mentsus = Hand::max_naki_groups;
     static constexpr mc_uif8 max_num_jantous = 1;
-    static constexpr auto      max_num_groups  = max_num_mentsus + max_num_jantous;
-    const            auto      num_mentsus     = num_remaining_tiles / 3;
+    static constexpr auto    max_num_groups  = max_num_mentsus + max_num_jantous;
+    const            auto    num_mentsus     = num_remaining_tiles / 3;
     const            mc_uif8 num_jantous     = 1;
-    const            auto      num_groups      = num_mentsus + num_jantous;
+    const            auto    num_groups      = num_mentsus + num_jantous;
 
     size_t cur_num_mentsus = 0;
     size_t cur_num_jantous = 0;
     const auto cur_num_groups = [&] { return cur_num_mentsus + cur_num_jantous; };
 
-    size_t    groups       [max_num_groups] {};
+    size_t  groups       [max_num_groups] {};
     mc_uif8 group_tries  [max_num_groups] {};
-    bool      group_certain[max_num_groups] {};
+    bool    group_certain[max_num_groups] {};
 
     size_t type_index = 0;
 

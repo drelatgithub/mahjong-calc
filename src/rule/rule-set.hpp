@@ -1,5 +1,5 @@
-#ifndef MAHJCALC_RULE_RULESET_HPP
-#define MAHJCALC_RULE_RULESET_HPP
+#ifndef Mahjcalc_Rule_RuleSet_Hpp
+#define Mahjcalc_Rule_RuleSet_Hpp
 
 #include "common.hpp"
 
@@ -13,6 +13,9 @@ struct RuleSet {
         Riichi, Custom
     };
     static constexpr TopCategory top_category = TopCategory::Riichi;
+
+    static constexpr size_t player_starting_score = 25000;
+    static constexpr size_t player_target_score = 30000;
 
     // Detailed game settings
     static constexpr bool enable_yaku_chitoitsu = true;

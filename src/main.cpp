@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "experiment/tenhou.hpp"
-#include "rule/ruleset/majsoul.hpp"
+#include "rule/rule-set/majsoul.hpp"
 
 int main() {
 

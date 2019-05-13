@@ -6,7 +6,7 @@
 
 namespace mahjcalc {
 
-struct Operation {
+struct PlayerOperation {
     enum class Type {
         Discard, RiichiDiscard,
         Tsumo, Ron,
@@ -14,8 +14,21 @@ struct Operation {
         KyuushuuKyuuhai,
         Cancel
     };
+
+    mc_uif8 player_id;
     Type type;
     size_t code;
+};
+
+struct PlayerStatus {
+    bool can_discard;
+    bool can_riichi;
+    bool can_tsumo;
+    bool can_ron;
+    bool can_chii;
+    bool can_pon;
+    bool can_kan;
+    bool can_kyuushuukyuuhai;
 };
 
 } // namespace mahjcalc
