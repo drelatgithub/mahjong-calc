@@ -70,7 +70,7 @@ template< typename Rule >
 struct RoundRecord {
     static constexpr size_t num_tiles = num_tiles< Rule >();
 
-    // RoundCount counter;
+    typename Rule::RoundCounter counter;
     std::array< size_t, num_tiles > tile_indices;
 
     std::vector< PlayerOperation > ops;
@@ -105,7 +105,7 @@ private:
 
     // Current round table information
     //-------------------------------------------------------------------------
-    // RoundCount counter_;
+    typename Rule::RoundCounter counter_;
     Haiyama< Rule > haiyama_;
 
     mc_uif8 oya_slot;
